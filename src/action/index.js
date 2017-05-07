@@ -4,7 +4,9 @@
  */
 
 import * as todo from './todo'
+import * as show from './show'
 
 export default {
     todo,
+    show,
 }

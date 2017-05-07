@@ -49,6 +49,8 @@ export default createReducer(initialState, {
         }
     },
     [actionType.REMOVE_TODO]: (state, action) => {
+        console.log(`REMOVE_TODO`) // eslint-disable-line
+
         return {
             ...state,
             todos: state.todos.filter(todo => todo.id !== action.id),

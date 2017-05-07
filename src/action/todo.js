@@ -45,3 +45,4 @@ export const removeTodo = (id) => ({
     type: actionType.REMOVE_TODO,
     id,
 })
+

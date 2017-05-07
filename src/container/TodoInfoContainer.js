@@ -15,17 +15,29 @@ import {connect,} from 'react-redux'
         todo: state.todo,
     }),
     action.todo,
-    // state => ({
-    //     todoList: state.todoList,
-    //     todo: state.todo,
-    // }),
-    // dispatch => bindActionCreators(action.todo, dispatch)
+    // 不管是 stateProps 还是 dispatchProps ，都需要和 ownProps merge 之后才会被赋给 组件
+    (stateProps, dispatchProps, ownProps) => {
+        return {
+            ...stateProps,
+            ...dispatchProps,
+            ...ownProps,
+        }
+    },
+    // option 选项
+    {
+        pure: true,
+        withRef: true,
+    }
 )
 class TodoInfoContainer extends PureComponent {
 
     constructor(props) {
         super(props)
         this.state = {}
+    }
+
+    componentDidMount() {
+        console.log(`props:`, this.props) // eslint-disable-line
     }
 
     render() {
@@ -38,7 +50,7 @@ class TodoInfoContainer extends PureComponent {
         }
 
         return (
-            <div className="todo">id: {this.props.router.params.id}</div>
+            <div className="todo" >id: {this.props.router.params.id}</div>
         )
     }
 
