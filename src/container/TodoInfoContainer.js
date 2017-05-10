@@ -4,7 +4,8 @@
  */
 
 import './TodoInfoContainer.pcss'
-import * as action from '../action'
+// import * as action from '../action'
+import action from '../action'
 import React, {PureComponent,} from 'react'
 import SearchView from '../component/SearchView'
 // import { bindActionCreators, } from 'redux'
@@ -42,12 +43,6 @@ class TodoInfoContainer extends PureComponent {
 
     render() {
         // const {todo,} = this.props
-
-        if (this.props.router.params.id && this.props.router.params.id === '1') {
-            return (
-                <SearchView/>
-            )
-        }
 
         return (
             <div className="todo" >id: {this.props.router.params.id}</div>

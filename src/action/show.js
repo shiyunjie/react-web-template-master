@@ -7,7 +7,7 @@
 import * as actionType from '../constant/action-type'
 
 
-export const IsShow = (index) => ({
+export const setShow = (index) => ({
     type: actionType.SHOW_NUM,
     index,
 })

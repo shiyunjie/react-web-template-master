@@ -1,0 +1,45 @@
+{
+    "code": 200,
+    "data": [
+        {
+            "category": "Sporting Goods",
+            "products": [
+                {
+                    "name": "football",
+                    "cost": 49.99,
+                    "discount": false
+                },
+                {
+                    "name": "baseball",
+                    "cost": 9.99,
+                    "discount": false
+                },
+                {
+                    "name": "basketball",
+                    "cost": 29.99,
+                    "discount": true
+                }
+            ]
+        },
+        {
+            "category": "Electronics",
+            "products": [
+                {
+                    "name": "iPod Touch",
+                    "cost": 99.99,
+                    "discount": false
+                },
+                {
+                    "name": "iPhone 5",
+                    "cost": 399.99,
+                    "discount": false
+                },
+                {
+                    "name": "Nexus 7",
+                    "cost": 199.99,
+                    "discount": true
+                }
+            ]
+        }
+    ]
+}

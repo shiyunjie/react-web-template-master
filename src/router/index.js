@@ -9,6 +9,7 @@ import NoMatchContainer from '../container/common/NoMatchContainer'
 import TodoInfoRouteContainer from '../container/router/TodoInfoRoute'
 import TodoListRouteContainer from '../container/router/TodoListRoute'
 import TodoNumberRouteContainer from '../container/router/TodoNumberRoute'
+import SearchInfoRouteContainer from '../container/router/SearchInfoRoute'
 // 没有匹配到的路由
 const noMatchRoute = {
     path: '*',
@@ -23,8 +24,12 @@ const TodoInfoRoute = {
     component: TodoInfoRouteContainer,
 }
 const TodoNumberRoute = {
-    path: 'todo-num()',
+    path: 'todo-num',
     component: TodoNumberRouteContainer,
+}
+const SearchRoute = {
+    path: 'search-info',
+    component: SearchInfoRouteContainer,
 }
 
 /*
@@ -41,6 +46,7 @@ const route = {
     childRoutes: [// 包含的子路由
         TodoListRoute,
         TodoNumberRoute,
+        SearchRoute,
         TodoInfoRoute,
         noMatchRoute,
 

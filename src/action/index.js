@@ -5,8 +5,10 @@
 
 import * as todo from './todo'
 import * as show from './show'
+import * as search from './search'
 
 export default {
     todo,
     show,
+    search,
 }

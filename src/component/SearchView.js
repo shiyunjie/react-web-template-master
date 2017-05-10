@@ -7,65 +7,77 @@ import React, {PropTypes, PureComponent,} from 'react'
 class SearchView extends PureComponent {
     static defaultProps = {
         searchResult: [
-            {
-                category: 'Sporting Goods',
-                products: [
-                    {
-                        name: 'football',
-                        cost: '49.99',
-                        discount: false,
-                    },
-                    {
-                        name: 'baseball',
-                        cost: '9.99',
-                        discount: false,
-                    },
-                    {
-                        name: 'basketball',
-                        cost: '29.99',
-                        discount: true,
-                    },
-                ],
-            },
-            {
-                category: 'Electronics',
-                products: [
-                    {
-                        name: 'iPod Touch',
-                        cost: '99.99',
-                        discount: false,
-                    },
-                    {
-                        name: 'iPhone 5',
-                        cost: '399.99',
-                        discount: false,
-                    },
-                    {
-                        name: 'Nexus 7',
-                        cost: '199.99',
-                        discount: true,
-                    },
-                ],
-            },
+            // {
+            //     category: 'Sporting Goods',
+            //     products: [
+            //         {
+            //             name: 'football',
+            //             cost: '49.99',
+            //             discount: false,
+            //         },
+            //         {
+            //             name: 'baseball',
+            //             cost: '9.99',
+            //             discount: false,
+            //         },
+            //         {
+            //             name: 'basketball',
+            //             cost: '29.99',
+            //             discount: true,
+            //         },
+            //     ],
+            // },
+            // {
+            //     category: 'Electronics',
+            //     products: [
+            //         {
+            //             name: 'iPod Touch',
+            //             cost: '99.99',
+            //             discount: false,
+            //         },
+            //         {
+            //             name: 'iPhone 5',
+            //             cost: '399.99',
+            //             discount: false,
+            //         },
+            //         {
+            //             name: 'Nexus 7',
+            //             cost: '199.99',
+            //             discount: true,
+            //         },
+            //     ],
+            // },
         ],
         title: 'name price',
+        searchValue: '',
 
     }
     static propTypes = {
         searchResult: PropTypes.array,
         title: PropTypes.string,
-        // search: PropTypes.func,
+        searchValue: PropTypes.string,
+        setSearchFor: PropTypes.func,
 
     }
 
     constructor(props) {
         super(props)
         this.state = {
-            searchValue: '',
+            searchValue: this.props.searchValue,
             checked: false,
             showResult: [],
         }
         this.timer = null
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const {showResult,} = nextProps
+
+        console.log(`componentWillReceiveProps`, nextProps) // eslint-disable-line
+
+        if (showResult !== this.state.showResult) {
+            this.setState({showResult,}, this.handleSearchFor())// eslint-disable-line
+        }
     }
 
     componentWillUnmount() {
@@ -80,13 +92,7 @@ class SearchView extends PureComponent {
             checked,
         })
     }
-
-
-    handleOnChange = (e) => {
-        // console.log(`handleOnChange:`, e.target.value) // eslint-disable-line
-        this.setState({ // eslint-disable-line
-            searchValue: e.target.value,
-        })
+    handleSearchFor = () => {
         this.timer && clearTimeout(this.timer)      // eslint-disable-line
 
         this.timer = setTimeout(() => {
@@ -113,6 +119,15 @@ class SearchView extends PureComponent {
         }, 1000)
     }
 
+    handleOnChange = (e) => {
+        // console.log(`handleOnChange:`, e.target.value) // eslint-disable-line
+        this.setState({ // eslint-disable-line
+            searchValue: e.target.value,
+        })
+        this.props.setSearchFor(e.target.value)
+        this.handleSearchFor()
+    }
+
     render() {
         const {searchValue, checked, showResult,} = this.state
         const {title,} = this.props
@@ -129,7 +144,7 @@ class SearchView extends PureComponent {
                 <div >
                     <h2 style={{fontWeight: 'bold',}}>{title}</h2>
                 </div>
-                {showResult.map((value) => {
+                {showResult && showResult.map((value) => {
                     return (
                         <div key={`${value.category}`}>
                             <p

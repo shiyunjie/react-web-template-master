@@ -2,10 +2,11 @@
  * Created by shiyunjie on 17/5/4.
  */
 import './TodoNumberContainer.pcss'
-import * as action from '../action'
+// import * as action from '../action'
+import action from '../action'
 import React, {PureComponent,} from 'react'
 import {connect,} from 'react-redux'
-import * as actionType from '../constant/action-type'
+// import * as actionType from '../constant/action-type'
 // import { bindActionCreators,} from 'redux'
 
 @connect(
@@ -52,8 +53,9 @@ class NumberView extends PureComponent {
     }
 
     handleTodoShowNum = (index) => {
-        this.props.dispatch({type: actionType.SHOW_NUM, index,})
-        // this.props.show(index)
+        // this.props.dispatch({type: actionType.SHOW_NUM, index,})
+        console.log(`this.props.show`, this.props.show) // eslint-disable-line
+        this.props.setShow(index)
 
         /*  const {numArray,} = this.state
          const newArray = [...numArray,]
@@ -64,6 +66,9 @@ class NumberView extends PureComponent {
          this.setState({// eslint-disable-line
          numArray: newArray,
          })*/
+    }
+    handleSearchFor = () => {
+        this.props.router.push('/search-info')
     }
 
     render() {
@@ -77,6 +82,7 @@ class NumberView extends PureComponent {
                             {value.show && value.num }
                         </div>)
                 })}
+                <input type="button" className="button" onClick={this.handleSearchFor} value="搜索页"/>
             </div>
         )
     }
