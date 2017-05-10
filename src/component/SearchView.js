@@ -66,17 +66,16 @@ class SearchView extends PureComponent {
             searchValue: this.props.searchValue,
             checked: false,
             showResult: [],
+            searchResult: this.props.searchResult,
         }
         this.timer = null
     }
 
     componentWillReceiveProps(nextProps) {
-        const {showResult,} = nextProps
-
         console.log(`componentWillReceiveProps`, nextProps) // eslint-disable-line
 
-        if (showResult !== this.state.showResult) {
-            this.setState({showResult,}, this.handleSearchFor())// eslint-disable-line
+        if (this.state.showResult && this.state.showResult.length === 0) {
+            this.handleSearchFor()// eslint-disable-line
         }
     }
 
@@ -87,7 +86,6 @@ class SearchView extends PureComponent {
     handleCheckbox = () => {
         const checked = !this.state.checked
 
-        console.log(`handleCheckbox`) // eslint-disable-line
         this.setState({ // eslint-disable-line
             checked,
         })
@@ -99,7 +97,6 @@ class SearchView extends PureComponent {
             const {searchValue,} = this.state
             const result = []
 
-            console.log(`setTimeout:`, searchValue) // eslint-disable-line
             this.props.searchResult.forEach((item) => {
                 const goods = []
 
